@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on suryapsp</title>
+    <link>http://example.org/posts/</link>
+    <description>Recent content in Posts on suryapsp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Apr 2023 11:34:21 +0530</lastBuildDate>
+    
+	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>My First Blog</title>
+      <link>http://example.org/posts/my-first-blog/</link>
+      <pubDate>Thu, 27 Apr 2023 11:34:21 +0530</pubDate>
+      
+      <guid>http://example.org/posts/my-first-blog/</guid>
+      <description>&lt;p&gt;Hello, World! I always wanted my own presence on the INTERNET where i document my programming journey and this website is created to serve that purpose.&lt;/p&gt;
+&lt;h2 id=&#34;my-inspiration&#34;&gt;My Inspiration&lt;/h2&gt;
+&lt;p&gt;These are some of the websites i took inspiration from so make sure to check them out too.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://stallman.org/&#34;&gt;Richard Stallman&amp;rsquo;s Personal Site&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://bugswriter.com/&#34;&gt;Bugswriter&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://motherfuckingwebsite.com/&#34;&gt;motherf***ingwebsite&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://crackhead-systems.vercel.app/&#34;&gt;Crackhead Systems&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    
+    
+    
+  </channel>
+</rss>
