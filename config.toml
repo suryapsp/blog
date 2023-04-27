@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://suryapsp.netlify.app'
 languageCode = 'en-us'
 title = 'suryapsp'
 theme = 'etch'
