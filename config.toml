@@ -2,17 +2,20 @@ baseURL = 'https://suryapsp.netlify.app'
 languageCode = 'en-us'
 title = 'suryapsp'
 theme = 'etch'
+copyright = "© 2023-2024 Surya Singh"
 
 [menu]
-    [[menu.main]]
-        identifier = 'posts'
-        name = 'Posts'
-        url = '/posts'
-        weight = 10
-
-
     [[menu.main]]
         identifier = 'about'
         name = 'About'
         url = '/about'
+        weight = 10
+
+    [[menu.main]]
+        identifier = 'github'
+        name = 'Github'
+        url = 'https://github.com/suryapsp/'
         weight = 20
+
+
+    
