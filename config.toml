@@ -12,10 +12,7 @@ copyright = "© 2023-2024 Surya Singh"
         weight = 10
 
     [[menu.main]]
-        identifier = 'github'
-        name = 'Github'
-        url = 'https://github.com/suryapsp/'
+        identifier = 'mail'
+        name = 'mail'
+        url = 'mailto:suryasingh2522@gmail.com'
         weight = 20
-
-
-    

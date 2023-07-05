@@ -4,8 +4,6 @@ date: 2023-04-27T10:51:27+05:30
 draft: false
 ---
 
-My name is Surya Singh and i am a computer science student and I always wanted my own presence on the INTERNET where i document my computer science journey and this website is created to serve that purpose.
+My name is Surya Singh i am a Computer Science student and I created this website to document my life journey(computer science journey to be more precise).
 
-Make sure to check out my [github](https://github.com/suryapsp) and you can DM me on discord `yama#9700` for anything.
-
-
+Make sure to check out my [github](https://github.com/suryapsp) and you can [mail](mailto:suryasingh2522@gmail.com) me for anything.
