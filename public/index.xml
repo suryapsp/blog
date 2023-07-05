@@ -2,38 +2,128 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on suryapsp</title>
-    <link>http://example.org/</link>
+    <link>https://suryapsp.netlify.app/</link>
     <description>Recent content in Home on suryapsp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Apr 2023 12:15:27 +0530</lastBuildDate>
+    <copyright>© 2023-2024 Surya Singh</copyright>
+    <lastBuildDate>Mon, 08 May 2023 16:57:39 +0530</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://suryapsp.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     
     
     
     <item>
-      <title>My First Blog</title>
-      <link>http://example.org/posts/my-first-blog/</link>
-      <pubDate>Thu, 27 Apr 2023 11:34:21 +0530</pubDate>
+      <title>Currying in SML(Standard ML)</title>
+      <link>https://suryapsp.netlify.app/posts/currying/</link>
+      <pubDate>Wed, 05 Jul 2023 18:42:01 +0530</pubDate>
       
-      <guid>http://example.org/posts/my-first-blog/</guid>
-      <description>&lt;p&gt;Hello, World! I always wanted my own presence on the INTERNET where i document my programming journey and this website is created to serve that purpose.&lt;/p&gt;
-&lt;h2 id=&#34;my-inspiration&#34;&gt;My Inspiration&lt;/h2&gt;
-&lt;p&gt;These are some of the websites i took inspiration from so make sure to check them out too.&lt;/p&gt;
+      <guid>https://suryapsp.netlify.app/posts/currying/</guid>
+      <description>&lt;h2 id=&#34;what-is-currying&#34;&gt;What is Currying?&lt;/h2&gt;
+&lt;p&gt;Currying is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Closure_(computer_programming)&#34;&gt;closure idiom&lt;/a&gt; named after a famous logician &lt;a href=&#34;https://en.wikipedia.org/wiki/Haskell_Curry&#34;&gt;Haskell Curry&lt;/a&gt;. Currying means taking a function which takes in an argument and then return return the function which takes in an other argument and it keeps on going until it evaluates the whole program.&lt;/p&gt;
+&lt;h3 id=&#34;normal-way-of-writing-a-sum-function&#34;&gt;Normal Way of Writing a Sum Function&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sml&#34; data-lang=&#34;sml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; (x, y, z) =
+    x + y + z
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; sixty = sum(&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is the normal way of writing a sum function also known as the tupled way of writing function.&lt;/p&gt;
+&lt;h3 id=&#34;the-curried-way&#34;&gt;The Curried Way&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sml&#34; data-lang=&#34;sml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fun&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; x =
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; y =&amp;gt; 
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; z =&amp;gt; 
+            x + y + z
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; sixty = ((sum &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;) &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;) &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a Curried function here sum takes in an argument x that returns an anonymous function which takes in an argument y that returns an anonymous function which takes in an argument z and this anonymous functions sums all the number.&lt;/p&gt;
+&lt;p&gt;(sum 20) return the closure fn y =&amp;gt; fn z =&amp;gt; x + y + z. Where x maps to 20.&lt;/p&gt;
+&lt;p&gt;Calling that Closure with 20 again returns a closure fn z =&amp;gt; x + y + z. Where x maps to 20 and y also maps to 20.&lt;/p&gt;
+&lt;p&gt;Calling that closure with 20 again returns 60.&lt;/p&gt;
+&lt;p&gt;There is some syntactic sugar as well for Currying provided by SML(Standard ML) but I am not gonna cover that in this post because I wanna keep this post more abstract.&lt;/p&gt;
+&lt;h3 id=&#34;some-other-useful-resources&#34;&gt;Some Other Useful Resources&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://stallman.org/&#34;&gt;Richard Stallman&amp;rsquo;s Personal Site&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://bugswriter.com/&#34;&gt;Bugswriter&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://motherfuckingwebsite.com/&#34;&gt;motherf***ingwebsite&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://crackhead-systems.vercel.app/&#34;&gt;Crackhead Systems&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/mQztHT2OLCE&#34;&gt;Currying by Dan Grossman (highly recommended)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Currying&#34;&gt;Currying Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Development of SkyPeeker</title>
+      <link>https://suryapsp.netlify.app/posts/weather-app-in-flask/</link>
+      <pubDate>Mon, 08 May 2023 18:05:14 +0530</pubDate>
+      
+      <guid>https://suryapsp.netlify.app/posts/weather-app-in-flask/</guid>
+      <description>&lt;h2 id=&#34;what-is-skypeeker&#34;&gt;What is SkyPeeker?&lt;/h2&gt;
+&lt;p&gt;So me and my friend &lt;a href=&#34;https://github.com/Warlord64&#34;&gt;Warlord64&lt;/a&gt; were getting bored so we decided to make a weather app because it would be something that we could show to normal people(by normal people i mean people who are not developers).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/suryapsp/sky-peeker&#34;&gt;SkyPeeker&lt;/a&gt; is a weather app that uses &lt;a href=&#34;https://openweathermap.org/api&#34;&gt;openweathermap API&lt;/a&gt; and &lt;a href=&#34;https://flask.palletsprojects.com/en/2.3.x/&#34;&gt;Flask&lt;/a&gt; in the backend and plain HTML CSS and JS in the frontend. Check out the &lt;a href=&#34;http://skypeeker.pythonanywhere.com/&#34;&gt;Demo&lt;/a&gt;.
+(&lt;strong&gt;The Demo Website might not work after some time because pythonanywhere require you to manually restart the instance after every 3 months.&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;The front-end was made by my good friend Warlord64 make sure to check him out and the backend was written by me. We both faced a lot of issues during the development because of our massive skill issue.&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+&lt;p&gt;Ok so i am not gonna explain what the front-end code is doing but i am gonna focus more on the backend code because i have written that and i know what everything does.&lt;/p&gt;
+&lt;h3 id=&#34;setting-up-the-environment&#34;&gt;Setting up the environment&lt;/h3&gt;
+&lt;p&gt;first of all we are gonna create an environment before starting the coding part.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir sky-peeker
+cd sky-peeker
+python3 -m venv venv
+./venv/bin/activate
+pip install flask
+touch app.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;get-your-api-key&#34;&gt;Get your API Key&lt;/h3&gt;
+&lt;p&gt;go to &lt;a href=&#34;https://openweathermap.org/api&#34;&gt;openweathermap&lt;/a&gt; and get your own api key.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;your-api-key&amp;gt;&amp;#34;&lt;/span&gt; &amp;gt; api_key
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;the-main-code&#34;&gt;The main code&lt;/h3&gt;
+&lt;p&gt;first import all the main packages that we will require in the development.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; flask &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Flask,render_template,request,abort
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; json
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; urllib.request
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;function to convert kelvin to degree celcius&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;app &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Flask(__name__)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tocelcius&lt;/span&gt;(temperature_in_kelvin):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; str(round(temperature_in_kelvin &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;273.15&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The main weather function&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@app&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;route(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;,methods&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;])
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;weather&lt;/span&gt;():
+    &lt;span style=&#34;color:#75715e&#34;&gt;#api key&lt;/span&gt;
+    api_key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; open(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;api_key&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read()
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;#city&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;method &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;:
+        city &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;form[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;city&amp;#39;&lt;/span&gt;]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        city &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kanpur&amp;#39;&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;#getting json data from the api&lt;/span&gt;
+    url &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; urllib&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;urlopen(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;http://api.openweathermap.org/data/2.5/weather?q=&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; city &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;amp;appid=&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; api_key)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read()
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;# converting json data to dictionary&lt;/span&gt;
+    data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;loads(url)
+    weather_info &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;temp&amp;#34;&lt;/span&gt;: str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;temp&amp;#39;&lt;/span&gt;]) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;k&amp;#39;&lt;/span&gt;,
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;temp_cel&amp;#34;&lt;/span&gt;: tocelcius(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;temp&amp;#39;&lt;/span&gt;]) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;,
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;pressure&amp;#34;&lt;/span&gt;: str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;pressure&amp;#39;&lt;/span&gt;]),
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;humidity&amp;#34;&lt;/span&gt;: str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;humidity&amp;#39;&lt;/span&gt;]),
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;cityname&amp;#34;&lt;/span&gt;:str(city),
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;country_code&amp;#34;&lt;/span&gt;: str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sys&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;country&amp;#39;&lt;/span&gt;]),
+
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;coordinate&amp;#34;&lt;/span&gt;: str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;coord&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lon&amp;#39;&lt;/span&gt;]) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; str(data[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;coord&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lat&amp;#39;&lt;/span&gt;]),
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; render_template(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;,weather_info&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;weather_info)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;what-to-do-next&#34;&gt;What to do next&lt;/h3&gt;
+&lt;p&gt;now create the templates and static folder&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;mkdir templates
+mkdir static
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;templates is the folder where all your index.html and other main files go and in static all your images, css amd javascript files go&lt;/p&gt;
+&lt;h2 id=&#34;resources-i-used&#34;&gt;Resources i used&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://flask.palletsprojects.com/en/2.2.x/&#34;&gt;Flask Doccumentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/&#34;&gt;StackOverflow&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://suryapsp.netlify.app/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <link rel="canonical" href="https://suryapsp.netlify.app/posts/weather-app-in-flask/" />
+    <title>Development of SkyPeeker</title>
+</head>
+<body><header id="banner">
+    <h2><a href="https://suryapsp.netlify.app">suryapsp</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/about" title="">About</a>
+            </li><li>
+                <a href="mailto:suryasingh2522@gmail.com" title="">mail</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Development of SkyPeeker</h1>
+        <div>
+                <time>May 8, 2023</time>
+            </div>
+    </header><h2 id="what-is-skypeeker">What is SkyPeeker?</h2>
+<p>So me and my friend <a href="https://github.com/Warlord64">Warlord64</a> were getting bored so we decided to make a weather app because it would be something that we could show to normal people(by normal people i mean people who are not developers).</p>
+<p><a href="https://github.com/suryapsp/sky-peeker">SkyPeeker</a> is a weather app that uses <a href="https://openweathermap.org/api">openweathermap API</a> and <a href="https://flask.palletsprojects.com/en/2.3.x/">Flask</a> in the backend and plain HTML CSS and JS in the frontend. Check out the <a href="http://skypeeker.pythonanywhere.com/">Demo</a>.
+(<strong>The Demo Website might not work after some time because pythonanywhere require you to manually restart the instance after every 3 months.</strong>)</p>
+<p>The front-end was made by my good friend Warlord64 make sure to check him out and the backend was written by me. We both faced a lot of issues during the development because of our massive skill issue.</p>
+<h2 id="code">Code</h2>
+<p>Ok so i am not gonna explain what the front-end code is doing but i am gonna focus more on the backend code because i have written that and i know what everything does.</p>
+<h3 id="setting-up-the-environment">Setting up the environment</h3>
+<p>first of all we are gonna create an environment before starting the coding part.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir sky-peeker
+cd sky-peeker
+python3 -m venv venv
+./venv/bin/activate
+pip install flask
+touch app.py
+</code></pre></div><h3 id="get-your-api-key">Get your API Key</h3>
+<p>go to <a href="https://openweathermap.org/api">openweathermap</a> and get your own api key.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;&lt;your-api-key&gt;&#34;</span> &gt; api_key
+</code></pre></div><h3 id="the-main-code">The main code</h3>
+<p>first import all the main packages that we will require in the development.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask,render_template,request,abort
+<span style="color:#f92672">import</span> json
+<span style="color:#f92672">import</span> urllib.request
+</code></pre></div><p>function to convert kelvin to degree celcius</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">app <span style="color:#f92672">=</span> Flask(__name__)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">tocelcius</span>(temperature_in_kelvin):
+    <span style="color:#66d9ef">return</span> str(round(temperature_in_kelvin <span style="color:#f92672">-</span> <span style="color:#ae81ff">273.15</span>, <span style="color:#ae81ff">3</span>))
+</code></pre></div><p>The main weather function</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/&#39;</span>,methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#e6db74">&#39;GET&#39;</span>])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">weather</span>():
+    <span style="color:#75715e">#api key</span>
+    api_key <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;api_key&#39;</span>, <span style="color:#e6db74">&#39;r&#39;</span>)<span style="color:#f92672">.</span>read()
+
+    <span style="color:#75715e">#city</span>
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        city <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>form[<span style="color:#e6db74">&#39;city&#39;</span>]
+    <span style="color:#66d9ef">else</span>:
+        city <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kanpur&#39;</span>
+
+    <span style="color:#75715e">#getting json data from the api</span>
+    url <span style="color:#f92672">=</span> urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlopen(<span style="color:#e6db74">&#39;http://api.openweathermap.org/data/2.5/weather?q=&#39;</span> <span style="color:#f92672">+</span> city <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;appid=&#39;</span> <span style="color:#f92672">+</span> api_key)<span style="color:#f92672">.</span>read()
+
+    <span style="color:#75715e"># converting json data to dictionary</span>
+    data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(url)
+    weather_info <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#34;temp&#34;</span>: str(data[<span style="color:#e6db74">&#39;main&#39;</span>][<span style="color:#e6db74">&#39;temp&#39;</span>]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;k&#39;</span>,
+
+        <span style="color:#e6db74">&#34;temp_cel&#34;</span>: tocelcius(data[<span style="color:#e6db74">&#39;main&#39;</span>][<span style="color:#e6db74">&#39;temp&#39;</span>]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;C&#39;</span>,
+
+        <span style="color:#e6db74">&#34;pressure&#34;</span>: str(data[<span style="color:#e6db74">&#39;main&#39;</span>][<span style="color:#e6db74">&#39;pressure&#39;</span>]),
+
+        <span style="color:#e6db74">&#34;humidity&#34;</span>: str(data[<span style="color:#e6db74">&#39;main&#39;</span>][<span style="color:#e6db74">&#39;humidity&#39;</span>]),
+
+        <span style="color:#e6db74">&#34;cityname&#34;</span>:str(city),
+
+        <span style="color:#e6db74">&#34;country_code&#34;</span>: str(data[<span style="color:#e6db74">&#39;sys&#39;</span>][<span style="color:#e6db74">&#39;country&#39;</span>]),
+
+        <span style="color:#e6db74">&#34;coordinate&#34;</span>: str(data[<span style="color:#e6db74">&#39;coord&#39;</span>][<span style="color:#e6db74">&#39;lon&#39;</span>]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#39;coord&#39;</span>][<span style="color:#e6db74">&#39;lat&#39;</span>]),
+    }
+    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;index.html&#39;</span>,weather_info<span style="color:#f92672">=</span>weather_info)
+</code></pre></div><h3 id="what-to-do-next">What to do next</h3>
+<p>now create the templates and static folder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir templates
+mkdir static
+</code></pre></div><p>templates is the folder where all your index.html and other main files go and in static all your images, css amd javascript files go</p>
+<h2 id="resources-i-used">Resources i used</h2>
+<ul>
+<li><a href="https://flask.palletsprojects.com/en/2.2.x/">Flask Doccumentation</a></li>
+<li><a href="https://stackoverflow.com/">StackOverflow</a></li>
+</ul>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

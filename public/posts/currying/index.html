@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://suryapsp.netlify.app/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    <link rel="canonical" href="https://suryapsp.netlify.app/posts/currying/" />
+    <title>Currying in SML(Standard ML)</title>
+</head>
+<body><header id="banner">
+    <h2><a href="https://suryapsp.netlify.app">suryapsp</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="/about" title="">About</a>
+            </li><li>
+                <a href="mailto:suryasingh2522@gmail.com" title="">mail</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1>Currying in SML(Standard ML)</h1>
+        <div>
+                <time>July 5, 2023</time>
+            </div>
+    </header><h2 id="what-is-currying">What is Currying?</h2>
+<p>Currying is a <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closure idiom</a> named after a famous logician <a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>. Currying means taking a function which takes in an argument and then return return the function which takes in an other argument and it keeps on going until it evaluates the whole program.</p>
+<h3 id="normal-way-of-writing-a-sum-function">Normal Way of Writing a Sum Function</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sml" data-lang="sml"><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sum</span> (x, y, z) =
+    x + y + z
+
+<span style="color:#66d9ef">val</span> sixty = sum(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">20</span>)
+</code></pre></div><p>This is the normal way of writing a sum function also known as the tupled way of writing function.</p>
+<h3 id="the-curried-way">The Curried Way</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sml" data-lang="sml"><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">sum</span> x =
+    <span style="color:#66d9ef">fn</span> y =&gt; 
+        <span style="color:#66d9ef">fn</span> z =&gt; 
+            x + y + z
+
+<span style="color:#66d9ef">val</span> sixty = ((sum <span style="color:#ae81ff">20</span>) <span style="color:#ae81ff">20</span>) <span style="color:#ae81ff">20</span>
+</code></pre></div><p>This is a Curried function here sum takes in an argument x that returns an anonymous function which takes in an argument y that returns an anonymous function which takes in an argument z and this anonymous functions sums all the number.</p>
+<p>(sum 20) return the closure fn y =&gt; fn z =&gt; x + y + z. Where x maps to 20.</p>
+<p>Calling that Closure with 20 again returns a closure fn z =&gt; x + y + z. Where x maps to 20 and y also maps to 20.</p>
+<p>Calling that closure with 20 again returns 60.</p>
+<p>There is some syntactic sugar as well for Currying provided by SML(Standard ML) but I am not gonna cover that in this post because I wanna keep this post more abstract.</p>
+<h3 id="some-other-useful-resources">Some Other Useful Resources</h3>
+<ul>
+<li><a href="https://youtu.be/mQztHT2OLCE">Currying by Dan Grossman (highly recommended)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Currying">Currying Wikipedia</a></li>
+</ul>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>
